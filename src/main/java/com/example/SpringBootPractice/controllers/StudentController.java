@@ -1,13 +1,15 @@
-package com.icesi.demoBoot.controllers;
+package com.example.SpringBootPractice.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.icesi.demoBoot.beans.Student;
+import com.example.SpringBootPractice.beans.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,4 +47,29 @@ public class StudentController {
         students.add(student);
         return student;
     }
+
+    @PutMapping("/students/{firstName}/{lastName}")
+    public Student updateStudent(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName, @RequestBody Student student) {
+        for (Student s : students) {
+            if (s.getFirstName().equals(firstName) && s.getLastName().equals(lastName)) {
+                s.setFirstName(student.getFirstName());
+                s.setLastName(student.getLastName());
+                return s;
+            }
+        }
+        return null;
+    }
+
+    @DeleteMapping("/students/{firstName}/{lastName}")
+    public Student deleteStudent(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName) {
+        for (Student s : students) {
+            if (s.getFirstName().equals(firstName) && s.getLastName().equals(lastName)) {
+                students.remove(s);
+                return s;
+            }
+        }
+        return null;
+    } 
+
+    
 }

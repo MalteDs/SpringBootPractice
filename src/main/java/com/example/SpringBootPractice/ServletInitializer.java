@@ -1,13 +1,14 @@
-package com.icesi.demoBoot;
+package com.example.SpringBootPractice;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
 
 public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(DemoBootApplication.class);
+		return application.sources(SpringBootPracticeApplication.class);
 	}
 
 }
